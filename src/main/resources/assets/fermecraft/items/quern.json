@@ -1,0 +1,9 @@
+{
+  "model": {
+    "type": "minecraft:special",
+    "base": "fermecraft:block/quern",
+    "model": {
+      "type": "geckolib:geckolib"
+    }
+  }
+}

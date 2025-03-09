@@ -1,0 +1,9 @@
+{
+  "model": {
+    "type": "minecraft:special",
+    "base": "fermecraft:block/mason_jar",
+    "model": {
+      "type": "geckolib:geckolib"
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "item.fermecraft.mug": "Mug",
+  "item.fermecraft.fermenting_barrel": "Fermenting Barrel",
+  "item.fermecraft.mason_jar": "Mason Jar",
+  "item.fermecraft.yeast": "Yeast",
+  "item.fermecraft.milled_grain": "Milled Grain",
+  "item.fermecraft.quern": "Quern",
+
+  "block.fermecraft.fermenting_barrel": "Fermenting Barrel",
+  "block.fermecraft.mason_jar": "Mason Jar",
+  "block.fermecraft.quern": "Quern"
+}

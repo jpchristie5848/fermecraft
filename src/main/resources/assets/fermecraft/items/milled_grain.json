@@ -1,0 +1,12 @@
+{
+  "model": {
+    "type": "minecraft:model",
+    "model": "fermecraft:item/milled_grain",
+    "tints": [
+      {
+        "type": "minecraft:custom_model_data",
+        "default": 16250035
+      }
+    ]
+  }
+}

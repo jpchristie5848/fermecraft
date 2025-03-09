@@ -1,0 +1,44 @@
+{
+	"schemaVersion": 1,
+	"id": "fermecraft",
+	"version": "${version}",
+	"name": "Fermecraft",
+	"description": "This is an example description! Tell everyone what your mod is about!",
+	"authors": [
+		"Me!"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/fermecraft/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.jipthechip.Fermecraft"
+		],
+		"client": [
+          "com.jipthechip.client.FermecraftClient"
+		],
+		"fabric-datagen": [
+          "com.jipthechip.client.FermecraftDataGenerator"
+		]
+	},
+	"mixins": [
+		"fermecraft.mixins.json",
+		{
+			"config": "fermecraft.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.16.10",
+		"minecraft": "~1.21.4",
+		"java": ">=21",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}

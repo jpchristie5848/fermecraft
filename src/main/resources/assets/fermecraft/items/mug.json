@@ -1,0 +1,16 @@
+{
+  "model": {
+    "type": "minecraft:model",
+    "model": "fermecraft:item/mug",
+    "tints": [
+      {
+        "type": "minecraft:custom_model_data",
+        "default": 0
+      },
+      {
+        "type": "minecraft:constant",
+        "value": -1
+      }
+    ]
+  }
+}
