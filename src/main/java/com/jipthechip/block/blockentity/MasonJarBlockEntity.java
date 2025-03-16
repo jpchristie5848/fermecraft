@@ -34,7 +34,7 @@ public class MasonJarBlockEntity extends GeoBlockEntityBase {
     private static final RawAnimation LID_ON_ANIM = RawAnimation.begin().thenPlayAndHold("lid_on");
 
     public MasonJarBlockEntity(BlockPos pos, BlockState state) {
-        super(ModBlocks.blockEntityMap.get(RegistryNames.MASON_JAR), pos, state);
+        super(ModBlocks.blockEntityMap.get(RegistryNames.MASON_JAR), pos, state, RegistryNames.MASON_JAR);
     }
 
     @Override
@@ -150,10 +150,6 @@ public class MasonJarBlockEntity extends GeoBlockEntityBase {
 
     public boolean isCovered() {
         return isCovered;
-    }
-
-    public void setCovered(boolean covered) {
-        isCovered = covered;
     }
 
     public void setHasWater(boolean hasWater) {

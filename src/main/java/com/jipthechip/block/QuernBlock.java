@@ -27,7 +27,7 @@ public class QuernBlock extends GeoBlockBase {
                 player.openHandledScreen(quernBlockEntity);
                 return ActionResult.SUCCESS;
             }
-            else if(! player.isSneaking() && quernBlockEntity.turn()){
+            else if(! player.isSneaking() && quernBlockEntity.triggerUpdate()){
                 return ActionResult.SUCCESS;
             }
         }

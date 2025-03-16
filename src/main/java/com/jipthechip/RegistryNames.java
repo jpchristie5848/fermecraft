@@ -8,4 +8,5 @@ public class RegistryNames {
     public static final String YEAST = "yeast";
     public static final String MILLED_GRAIN = "milled_grain";
     public static final String QUERN = "quern";
+    public static final String HOPS = "hops";
 }

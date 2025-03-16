@@ -1,7 +1,5 @@
 package com.jipthechip.item;
 
-import com.jipthechip.model.Beer;
-import com.jipthechip.model.BeerType;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.CustomModelDataComponent;
 import net.minecraft.item.Item;

@@ -5,13 +5,16 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.screen.slot.Slot;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class InputSlot extends Slot {
 
-    Item item;
+    List<Item> items;
 
-    public InputSlot(Inventory inventory, int index, int x, int y, Item item) {
+    public InputSlot(Inventory inventory, int index, int x, int y, Item... items) {
         super(inventory,index, x, y);
-        this.item = item;
+        this.items = Arrays.asList(items);
     }
 
     public boolean canInsert(ItemStack stack) {
@@ -19,7 +22,7 @@ public class InputSlot extends Slot {
     }
 
     public boolean matches(ItemStack stack) {
-        return stack.getItem() == item;
+        return items.contains(stack.getItem());
     }
 
     @Override

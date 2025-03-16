@@ -2,9 +2,7 @@ package com.jipthechip.client;
 
 import com.jipthechip.block.ModBlocks;
 import com.jipthechip.client.gui.ModGUIs;
-import com.jipthechip.client.gui.block.QuernScreen;
 import net.fabricmc.api.ClientModInitializer;
-import net.minecraft.client.gui.screen.ingame.HandledScreens;
 
 public class FermecraftClient implements ClientModInitializer {
 	@Override
@@ -15,6 +13,10 @@ public class FermecraftClient implements ClientModInitializer {
             ModBlocks.blockEntityContainerMap.get(registryName).registerClient();
         }
 
-        HandledScreens.register(ModGUIs.QUERN_SCREEN_HANDLER, QuernScreen::new);
+        for(String registryName : ModGUIs.screenHandlerContainerMap.keySet()){
+            ModGUIs.screenHandlerContainerMap.get(registryName).registerClient();
+        }
+
+        //HandledScreens.register(ModGUIs.screenHandlerMap.get(RegistryNames.QUERN), QuernScreen::new);
 	}
 }
