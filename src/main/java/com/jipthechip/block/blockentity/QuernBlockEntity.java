@@ -5,26 +5,22 @@ import com.jipthechip.RegistryNames;
 import com.jipthechip.block.ModBlocks;
 import com.jipthechip.block.base.GeoCrafterBlockEntityBase;
 import com.jipthechip.client.gui.block.QuernScreenHandler;
+import com.jipthechip.item.MaltItem;
+import com.jipthechip.item.MilledMaltItem;
 import com.jipthechip.item.ModItems;
+import com.jipthechip.util.ImageUtil;
 import net.minecraft.block.BlockState;
-import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.CustomModelDataComponent;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
-import software.bernie.geckolib.animation.AnimatableManager;
-import software.bernie.geckolib.animation.AnimationController;
-import software.bernie.geckolib.animation.PlayState;
-import software.bernie.geckolib.animation.RawAnimation;
-import com.jipthechip.util.ImageUtil;
+import software.bernie.geckolib.animation.*;
 
 import java.util.List;
 
@@ -46,7 +42,7 @@ public class QuernBlockEntity extends GeoCrafterBlockEntityBase {
 
     @Override
     public double getBoneResetTime() {
-        return super.getBoneResetTime();
+        return 0;
     }
 
     public static void ticker(World world, BlockPos blockPos, BlockState blockState, QuernBlockEntity quernBlockEntity) {
@@ -57,12 +53,14 @@ public class QuernBlockEntity extends GeoCrafterBlockEntityBase {
     protected void craft() {
         ItemStack inputStack = getStack(0);
         ItemStack outputStack = getStack(1);
-        if(outputStack.getItem() == ModItems.MILLED_GRAIN && outputStack.getCount() < outputStack.getMaxCount()){
+
+        float maltDarkness = MaltItem.getDarknessFromStack(inputStack);
+
+        if(outputStack.getItem() == ModItems.MILLED_MALT && outputStack.getCount() < outputStack.getMaxCount() &&
+                MilledMaltItem.getDarknessFromStack(outputStack) == MaltItem.getDarknessFromStack(inputStack)){
             outputStack.setCount(outputStack.getCount() + 1);
         }else if(outputStack == ItemStack.EMPTY){
-            ItemStack milledGrainStack = new ItemStack(ModItems.MILLED_GRAIN);
-            milledGrainStack.set(DataComponentTypes.CUSTOM_MODEL_DATA, new CustomModelDataComponent(List.of(0.0f), List.of(),List.of("milled_grain"),List.of(ImageUtil.getBeerColor(0.0f))));
-            setStack(1, milledGrainStack);
+            setStack(1, ModItems.createItemStackWithComponent(ModItems.MILLED_MALT, 1, MilledMaltItem.createComponent(maltDarkness)));
         }
         if(inputStack.getCount() <= 1){
             setStack(0,ItemStack.EMPTY);
@@ -80,7 +78,7 @@ public class QuernBlockEntity extends GeoCrafterBlockEntityBase {
     }
 
     protected boolean hasRecipe(){
-        return getStack(0).getItem() == Items.WHEAT && getStack(1).getCount() < getStack(1).getMaxCount();
+        return getStack(0).getItem() == ModItems.MALT && getStack(1).getCount() < getStack(1).getMaxCount();
     }
 
     @Override

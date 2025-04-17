@@ -1,11 +1,14 @@
 package com.jipthechip.block.base;
 
+import com.jipthechip.block.blockentity.QuernBlockEntity;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import software.bernie.geckolib.animatable.GeoBlockEntity;
 
 public class GeoCrafterBlockEntityBase extends GeoInventoryBlockEntityBase{
 
@@ -72,6 +75,7 @@ public class GeoCrafterBlockEntityBase extends GeoInventoryBlockEntityBase{
         if(!updateTrigger){
             updateTrigger = true;
             markDirty();
+            return true;
         }
         return false;
     }
@@ -112,4 +116,5 @@ public class GeoCrafterBlockEntityBase extends GeoInventoryBlockEntityBase{
         }
         update();
     }
+
 }

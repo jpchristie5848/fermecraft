@@ -1,12 +1,21 @@
 {
   "item.fermecraft.mug": "Mug",
+  "item.fermecraft.filled_mug": "Mug",
   "item.fermecraft.fermenting_barrel": "Fermenting Barrel",
   "item.fermecraft.mason_jar": "Mason Jar",
+  "item.fermecraft.malt_roaster": "Malt Roaster",
   "item.fermecraft.yeast": "Yeast",
-  "item.fermecraft.milled_grain": "Milled Grain",
+  "item.fermecraft.milled_malt": "Milled Malt",
   "item.fermecraft.quern": "Quern",
+  "item.fermecraft.hops": "Hops",
+  "item.fermecraft.malt": "Malt",
+  "item.fermecraft.brew_bucket": "Brew Bucket",
+  "item.fermecraft.masher": "Masher",
 
   "block.fermecraft.fermenting_barrel": "Fermenting Barrel",
   "block.fermecraft.mason_jar": "Mason Jar",
-  "block.fermecraft.quern": "Quern"
+  "block.fermecraft.quern": "Quern",
+  "block.fermecraft.malt_roaster": "Malt Roaster",
+  "block.fermecraft.malter": "Malter",
+  "block.fermecraft.masher": "Masher"
 }

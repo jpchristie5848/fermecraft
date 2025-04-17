@@ -1,5 +1,6 @@
 package com.jipthechip.client.gui.slot;
 
+import com.jipthechip.block.blockentity.FermentingBarrelBlockEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -22,12 +23,9 @@ public class InputSlot extends Slot {
     }
 
     public boolean matches(ItemStack stack) {
+        if(items.isEmpty()) return true;
+        System.out.println("matches : "+items.contains(stack.getItem()));
         return items.contains(stack.getItem());
-    }
-
-    @Override
-    public ItemStack insertStack(ItemStack stack, int count) {
-        return super.insertStack(stack, count);
     }
 
     public int getMaxItemCount() {

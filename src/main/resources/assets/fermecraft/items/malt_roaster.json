@@ -1,0 +1,9 @@
+{
+  "model": {
+    "type": "minecraft:special",
+    "base": "fermecraft:block/malt_roaster",
+    "model": {
+      "type": "geckolib:geckolib"
+    }
+  }
+}

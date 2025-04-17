@@ -22,7 +22,8 @@ public class ProcessorScreenBase<T extends InventoryScreenHandlerBase> extends I
     protected void drawBackground(DrawContext context, float delta, int mouseX, int mouseY) {
         super.drawBackground(context, delta, mouseX, mouseY);
 
-        float progress = this.handler.getBlockEntity().getCraftingProgress()/this.handler.getBlockEntity().getMaxCraftingProgress();
+        float progress = getProgress();
+
         int progressBarSize;
 
         if(textureCropDirection == TextureCropDirection.HORIZONTAL_LEFT || textureCropDirection == TextureCropDirection.HORIZONTAL_RIGHT){
@@ -32,5 +33,9 @@ public class ProcessorScreenBase<T extends InventoryScreenHandlerBase> extends I
         }
 
         progressBarTexture.drawCropped(context, TEXTURE, x, y, progressBarSize, textureCropDirection);
+    }
+
+    protected float getProgress(){
+        return this.handler.getBlockEntity().getCraftingProgress()/this.handler.getBlockEntity().getMaxCraftingProgress();
     }
 }

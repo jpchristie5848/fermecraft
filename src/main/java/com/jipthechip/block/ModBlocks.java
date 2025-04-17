@@ -2,12 +2,10 @@ package com.jipthechip.block;
 
 import com.jipthechip.Fermecraft;
 import com.jipthechip.RegistryNames;
-import com.jipthechip.block.base.GeoBlockBase;
 import com.jipthechip.block.base.GeoBlockEntityContainer;
 import com.jipthechip.block.base.GeoBlockItemBase;
-import com.jipthechip.block.blockentity.MasonJarBlockEntity;
-import com.jipthechip.block.blockentity.FermentingBarrelBlockEntity;
-import com.jipthechip.block.blockentity.QuernBlockEntity;
+import com.jipthechip.block.blockentity.*;
+import com.jipthechip.client.geo.block.MaltRoasterBlockRenderer;
 import com.jipthechip.client.geo.block.MasonJarBlockRenderer;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.minecraft.block.AbstractBlock;
@@ -43,13 +41,24 @@ public class ModBlocks {
     public static void registerBlockEntities(){
 
         blockEntityContainerMap.put(RegistryNames.FERMENTING_BARREL, new GeoBlockEntityContainer<>(RegistryNames.FERMENTING_BARREL, AbstractBlock.Settings.copy(Blocks.BARREL).nonOpaque(),
-                new BlockItem.Settings().maxCount(64), GeoBlockBase::new, GeoBlockItemBase::new, FermentingBarrelBlockEntity::new, FermentingBarrelBlockEntity::ticker, null, null));
+                new BlockItem.Settings().maxCount(64), FermentingBarrelBlock::new, GeoBlockItemBase::new, FermentingBarrelBlockEntity::new, FermentingBarrelBlockEntity::ticker, null, null));
 
         blockEntityContainerMap.put(RegistryNames.MASON_JAR, new GeoBlockEntityContainer<>(RegistryNames.MASON_JAR, AbstractBlock.Settings.copy(Blocks.GLASS).nonOpaque(),
                 new BlockItem.Settings().maxCount(64), MasonJarBlock::new, GeoBlockItemBase::new, MasonJarBlockEntity::new, MasonJarBlockEntity::ticker, MasonJarBlockRenderer::new, null));
 
         blockEntityContainerMap.put(RegistryNames.QUERN, new GeoBlockEntityContainer<>(RegistryNames.QUERN, AbstractBlock.Settings.copy(Blocks.BARREL).nonOpaque(),
                 new BlockItem.Settings().maxCount(64), QuernBlock::new, GeoBlockItemBase::new, QuernBlockEntity::new, QuernBlockEntity::ticker, null, null));
+
+        blockEntityContainerMap.put(RegistryNames.MALT_ROASTER, new GeoBlockEntityContainer<>(RegistryNames.MALT_ROASTER, AbstractBlock.Settings.copy(Blocks.COBBLESTONE).nonOpaque(),
+                new BlockItem.Settings().maxCount(64), MaltRoasterBlock::new, GeoBlockItemBase::new, MaltRoasterBlockEntityGeo::new, MaltRoasterBlockEntityGeo::ticker, MaltRoasterBlockRenderer::new, null));
+
+        blockEntityContainerMap.put(RegistryNames.MALTER, new GeoBlockEntityContainer<>(RegistryNames.MALTER, AbstractBlock.Settings.copy(Blocks.BARREL).nonOpaque(),
+                new BlockItem.Settings().maxCount(64), MalterBlock::new, GeoBlockItemBase::new, MalterBlockEntity::new, MalterBlockEntity::ticker, null, null));
+
+        blockEntityContainerMap.put(RegistryNames.MASHER, new GeoBlockEntityContainer<>(RegistryNames.MASHER, AbstractBlock.Settings.copy(Blocks.BARREL).nonOpaque(),
+                new BlockItem.Settings().maxCount(64), MasherBlock::new, GeoBlockItemBase::new, MasherBlockEntity::new, MasherBlockEntity::ticker, null, null));
+
+
     }
 
     private static <T extends BlockEntity> void registerBlockWithEntity(String name, Block block, Item.Settings itemSettings, FabricBlockEntityTypeBuilder.Factory<T> blockEntityTypeFactory, BlockItemFactory blockItemFactory){

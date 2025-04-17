@@ -3,6 +3,7 @@ package com.jipthechip.client.gui.block;
 import com.jipthechip.block.blockentity.QuernBlockEntity;
 import com.jipthechip.client.gui.slot.InputSlot;
 import com.jipthechip.client.gui.slot.OutputSlot;
+import com.jipthechip.item.ModItems;
 import com.jipthechip.network.BlockPosPayload;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.Items;
@@ -15,7 +16,7 @@ public class QuernScreenHandler extends InventoryScreenHandlerBase<QuernBlockEnt
     public QuernScreenHandler(int syncId, PlayerInventory playerInventory, QuernBlockEntity quernBlockEntity){
         super(syncId, playerInventory, quernBlockEntity);
 
-        addSlot(new InputSlot(quernBlockEntity, 0, 56,34, Items.WHEAT));
+        addSlot(new InputSlot(quernBlockEntity, 0, 56,34, ModItems.MALT));
         addSlot(new OutputSlot(quernBlockEntity, 1,116, 34));
     }
 

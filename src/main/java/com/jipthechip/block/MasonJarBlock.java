@@ -44,17 +44,17 @@ public class MasonJarBlock extends GeoBlockBase {
                 }
             }else if(itemInHand == Items.PAPER){
                 if(masonJarBlockEntity.cover()){
-                    player.setStackInHand(Hand.MAIN_HAND, InventoryUtil.takeItemFromStack(stackInHand));
+                    player.setStackInHand(Hand.MAIN_HAND, InventoryUtil.takeOneFromStack(stackInHand));
                 }
             }else if(itemInHand == Items.WATER_BUCKET){
                 masonJarBlockEntity.setHasWater(true);
             }else if(itemInHand == Items.WHEAT){
                 if(masonJarBlockEntity.addWheat()){
-                    player.setStackInHand(Hand.MAIN_HAND, InventoryUtil.takeItemFromStack(stackInHand));
+                    player.setStackInHand(Hand.MAIN_HAND, InventoryUtil.takeOneFromStack(stackInHand));
                 }
             }else if(itemInHand == Items.SUGAR){
                 if(masonJarBlockEntity.addSugar()){
-                    player.setStackInHand(Hand.MAIN_HAND, InventoryUtil.takeItemFromStack(stackInHand));
+                    player.setStackInHand(Hand.MAIN_HAND, InventoryUtil.takeOneFromStack(stackInHand));
                 }
             }
         }

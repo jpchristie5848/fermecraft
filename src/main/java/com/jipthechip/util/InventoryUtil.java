@@ -4,7 +4,7 @@ import net.minecraft.item.ItemStack;
 
 public class InventoryUtil {
 
-    public static ItemStack takeItemFromStack(ItemStack stack){
+    public static ItemStack takeOneFromStack(ItemStack stack){
         int count = stack.getCount();
         return count <= 1 ? ItemStack.EMPTY : stack.copyWithCount(count - 1);
     }

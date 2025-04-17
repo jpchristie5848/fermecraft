@@ -3,6 +3,7 @@ package com.jipthechip.client;
 import com.jipthechip.block.ModBlocks;
 import com.jipthechip.client.gui.ModGUIs;
 import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
 
 public class FermecraftClient implements ClientModInitializer {
 	@Override

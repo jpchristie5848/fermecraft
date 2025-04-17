@@ -103,6 +103,7 @@ public class GeoBlockEntityContainer<B extends BlockWithEntity, I extends BlockI
             public @Nullable RenderLayer getRenderType(E animatable, Identifier texture) {
                 return RenderLayer.getEntityTranslucent(texture);
             }
+
         };
         return blockModel;
     }

@@ -24,6 +24,8 @@ import java.util.Optional;
 public class GeoInventoryBlockEntityBase extends GeoBlockEntityBase implements Inventory, ExtendedScreenHandlerFactory<BlockPosPayload> {
 
     protected DefaultedList<ItemStack> inventory;
+    protected boolean isOpen = false;
+    protected long lastOpenedTime = 0;
 
     public GeoInventoryBlockEntityBase(BlockEntityType type, BlockPos pos, BlockState state, String registryName, int invSize) {
         super(type, pos, state, registryName);
@@ -33,6 +35,17 @@ public class GeoInventoryBlockEntityBase extends GeoBlockEntityBase implements I
     @Override
     public BlockPosPayload getScreenOpeningData(ServerPlayerEntity serverPlayerEntity) {
         return new BlockPosPayload(this.pos);
+    }
+
+    public void open() {
+        isOpen = true;
+        lastOpenedTime = System.currentTimeMillis();
+        markDirty();
+    }
+
+    public void close(){
+        isOpen = false;
+        markDirty();
     }
 
     @Override
@@ -74,17 +87,23 @@ public class GeoInventoryBlockEntityBase extends GeoBlockEntityBase implements I
 
     protected void writeNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registries) {
         Inventories.writeNbt(nbt, inventory, registries);
+        nbt.putBoolean("isOpen", isOpen);
+        nbt.putLong("lastOpenedTime", lastOpenedTime);
     }
 
     @Override
     protected void readNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registries) {
         Inventories.readNbt(nbt, inventory, registries);
+        isOpen = nbt.getBoolean("isOpen");
+        lastOpenedTime = nbt.getLong("lastOpenedTime");
     }
 
     @Override
     public NbtCompound toInitialChunkDataNbt(RegistryWrapper.WrapperLookup registries) {
         NbtCompound nbt = new NbtCompound();
         Inventories.writeNbt(nbt, inventory, registries);
+        nbt.putBoolean("isOpen", isOpen);
+        nbt.putLong("lastOpenedTime", lastOpenedTime);
         return nbt;
     }
 

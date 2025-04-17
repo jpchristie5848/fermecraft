@@ -1,0 +1,9 @@
+{
+  "model": {
+    "type": "minecraft:special",
+    "base": "fermecraft:block/malter",
+    "model": {
+      "type": "geckolib:geckolib"
+    }
+  }
+}

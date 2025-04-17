@@ -42,7 +42,7 @@ public class GUITextureDrawContext {
                 context.drawTexture(RenderLayer::getGuiTextured, texture, x+guiPosX, y+guiPosY, texturePosX+(textureWidth - croppedLength), texturePosY, croppedLength, textureHeight, backgroundWidth, backgroundHeight);
             }
             case VERTICAL_UP -> {
-                context.drawTexture(RenderLayer::getGuiTextured, texture, x+guiPosX, y+guiPosY, texturePosX, texturePosY+(textureHeight - croppedLength), textureWidth, croppedLength, backgroundWidth, backgroundHeight);
+                context.drawTexture(RenderLayer::getGuiTextured, texture, x+guiPosX, y+guiPosY+(textureHeight - croppedLength), texturePosX, texturePosY+(textureHeight - croppedLength), textureWidth, croppedLength, backgroundWidth, backgroundHeight);
             }
             case VERTICAL_DOWN -> {
                 context.drawTexture(RenderLayer::getGuiTextured, texture, x+guiPosX, y+guiPosY, texturePosX, texturePosY, textureWidth, croppedLength, backgroundWidth, backgroundHeight);

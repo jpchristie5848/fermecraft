@@ -23,7 +23,7 @@ public abstract class InventoryScreenHandlerBase<T extends GeoBlockEntityBase & 
 
     private final ScreenHandlerContext context;
     private final String registryName;
-    private T blockEntity;
+    protected T blockEntity;
     private final Optional<RecipeBookType> recipeBookTypeOptional;
 
     protected InventoryScreenHandlerBase(int syncId, PlayerInventory playerInventory, T blockEntity) {

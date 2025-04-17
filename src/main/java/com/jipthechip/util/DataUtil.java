@@ -1,20 +1,21 @@
 package com.jipthechip.util;
 
+import com.jipthechip.item.HopsItem;
+import com.jipthechip.item.MilledMaltItem;
+import com.jipthechip.model.AbstractAlcohol;
 import com.jipthechip.model.Beer;
-import com.jipthechip.model.BeerCategory;
 import com.jipthechip.model.Wine;
 import net.minecraft.component.type.CustomModelDataComponent;
 import net.minecraft.nbt.NbtCompound;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class DataUtil {
 
 
-    public static Optional<Object> deserializeComponent(CustomModelDataComponent component, float containerCapacity){
+    public static Optional<? extends AbstractAlcohol> componentToAlcohol(CustomModelDataComponent component, float containerCapacity){
 
         if(component == null){
             return Optional.empty();
@@ -24,30 +25,34 @@ public class DataUtil {
 
         switch(label){
             case "beer" :
-                float abv = Objects.requireNonNull(component.getFloat(0));
-                float amount = Objects.requireNonNull(component.getFloat(1));
-                float ibu = Objects.requireNonNull(component.getFloat(2));
-                float srm = Objects.requireNonNull(component.getFloat(3));
-                boolean beerCategory = Objects.requireNonNull(component.getFlag(0));
-                return Optional.of(new Beer(abv, amount, containerCapacity, ibu, srm, beerCategory ? BeerCategory.ALE : BeerCategory.LAGER));
+                return Beer.fromComponent(component, containerCapacity);
             case "wine" :
                 // TODO
                 return Optional.empty();
             case "liquor" :
                 // TODO
                 return Optional.empty();
+            case "milled_malt":
+                return MilledMaltItem.alcoholFromComponent(component, containerCapacity);
+            case "hops":
+                return HopsItem.alcoholFromComponent(component, containerCapacity);
+            case null:
+                return Optional.empty();
             default :
                 return Optional.empty();
         }
     }
 
-    public static Optional<CustomModelDataComponent> serializeComponent(Object object){
+    public static Optional<CustomModelDataComponent> alcoholToComponent(Optional<AbstractAlcohol> alcoholOptional){
         CustomModelDataComponent component;
-        if(object instanceof Beer beer){
-            component = new CustomModelDataComponent(List.of(beer.getAbv(), beer.getAmount(), beer.getIbu(), beer.getSrm()), List.of(beer.getBeerCategory() == BeerCategory.ALE), List.of("beer"), List.of(beer.getColor()));
-            return Optional.of(component);
-        }if(object instanceof Wine wine){
-            // TODO
+
+        if(alcoholOptional.isPresent()){
+            if(alcoholOptional.get() instanceof Beer beer){
+                component = new CustomModelDataComponent(List.of(beer.getAbv(), beer.getAmount(), beer.getIbu(), beer.getSrm(), beer.getFermentableSugars(), (float)beer.getBeerCategory().ordinal(), beer.getSaturation()), List.of(), List.of("beer"), List.of(beer.getColor()));
+                return Optional.of(component);
+            }if(alcoholOptional.get() instanceof Wine wine){
+                // TODO
+            }
         }
 
         return Optional.empty();
